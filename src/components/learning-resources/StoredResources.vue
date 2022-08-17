@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul v-if="resources.length !== 0">
         <learning-resource v-for="resource in resources" :key="resource.id" 
             :id="resource.id"
             :title="resource.title"
@@ -7,13 +7,21 @@
             :link="resource.link"
         ></learning-resource>
     </ul>
+    <base-card v-else>
+        <p>There aren't any resources stored yet...</p>
+    </base-card>
 </template>
 
 <script>
 import LearningResource from './LearningResource.vue';
 export default {
     components: { LearningResource },
-    inject: ['resources']
+    computed: {
+        resources(){
+            return this.$store.getters.storedResources;
+        }
+    }
+    // inject: ['resources']
 }
 </script>
 

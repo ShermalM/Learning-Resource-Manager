@@ -31,7 +31,7 @@
 
 <script>
 export default {
-    inject: ['addResource'],
+    inject: ['setSelectedTab'],
     data(){
         return {
             inputIsInvalid: false,
@@ -41,8 +41,15 @@ export default {
         };
     },
     methods: {
+        addResource(title, description, link){
+            this.$store.dispatch('addResource', {
+                title,
+                description,
+                link
+            });
+            this.setSelectedTab('stored-resources');
+        },
         submitData(){
-
             if(this.enteredTitle.trim() === '' || this.enteredDescription.trim() === '' || this.enteredURL.trim === ''){
                 this.inputIsInvalid = true;
                 return;

@@ -15,7 +15,6 @@
 
 <script>
 export default {
-    inject: ['deleteResource'],
     props: {
         id: {
             type: String,
@@ -32,6 +31,11 @@ export default {
         link: {
             type: String,
             required: true
+        }
+    },
+    methods: {
+        deleteResource(id){
+            this.$store.dispatch('removeResource', id);
         }
     }
 }

@@ -16,40 +16,42 @@ export default {
     data(){
         return{
             selectedTab: 'stored-resources',
-            storedResources: [
-                {
-                    id: 'official-guide',
-                    title: 'Official Guide',
-                    description: 'The official Vue.js documentation.',
-                    link: 'https://vuejs.org'
-                },
-                {
-                    id: 'google',
-                    title: 'Google',
-                    description: 'Learn to google...',
-                    link: 'https://google.org'
-                }
-            ]
+            // storedResources: [
+            //     {
+            //         id: 'official-guide',
+            //         title: 'Official Guide',
+            //         description: 'The official Vue.js documentation.',
+            //         link: 'https://vuejs.org'
+            //     },
+            //     {
+            //         id: 'google',
+            //         title: 'Google',
+            //         description: 'Learn to google...',
+            //         link: 'https://google.org'
+            //     }
+            // ]
         };
     },
     methods: {
         setSelectedTab(tab){
             this.selectedTab = tab;
         },
-        addResource(title, description, link){
-            const newResource = {
-                id: new Date().toISOString(),
-                title,
-                description,
-                link
-            };
-            this.storedResources.unshift(newResource);
-            this.selectedTab = 'stored-resources';
-        },
-        removeResource(resourceID){
-            const resourceIndex = this.storedResources.findIndex(resource => resource.id === resourceID);
-            this.storedResources.splice(resourceIndex, 1);
-        }
+        // addResource(title, description, link){
+        //     const newResource = {
+        //         id: new Date().toISOString(),
+        //         title,
+        //         description,
+        //         link
+        //     };
+        //     this.storedResources.unshift(newResource);
+        //     localStorage.setItem('storedResources', JSON.stringify(this.storedResources));
+        //     this.selectedTab = 'stored-resources';
+        // },
+        // removeResource(resourceID){
+        //     const resourceIndex = this.storedResources.findIndex(resource => resource.id === resourceID);
+        //     this.storedResources.splice(resourceIndex, 1);
+        //     localStorage.setItem('storedResources', JSON.stringify(this.storedResources));
+        // },
     },
     computed: {
         storedResButtonMode(){
@@ -61,10 +63,17 @@ export default {
     },
     provide(){
         return {
-            resources: this.storedResources,
-            addResource: this.addResource,
-            deleteResource: this.removeResource
+            setSelectedTab: this.setSelectedTab
         };
-    }
+    },
+    // created(){
+    //     const storedResources = JSON.parse(localStorage.getItem('storedResources'));
+    //     console.log(this.storedResources);
+    //     if(storedResources){
+    //         console.log(storedResources);
+    //         this.storedResources = storedResources;
+    //         console.log(this.storedResources);
+    //     }
+    // }
 }
 </script>
