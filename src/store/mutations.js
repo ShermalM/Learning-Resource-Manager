@@ -13,4 +13,7 @@ export default {
         state.storedResources.splice(resourceIndex, 1);
         localStorage.setItem('storedResources', JSON.stringify(this.storedResources));
     },
+    loadResources(state, resources){
+        state.storedResources = resources;
+    }
 };

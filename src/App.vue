@@ -8,6 +8,13 @@ import TheHeader from './components/layouts/TheHeader.vue';
 import TheResources from './components/learning-resources/TheResources.vue';
 export default {
     components: { TheHeader, TheResources },
+    created(){
+        const localItem = localStorage.getItem('storedResources');
+        if(localItem){
+            const storedResources = JSON.parse(localItem);
+            this.$store.dispatch('loadResources', storedResources);
+        }
+    }
 }
 </script>
 

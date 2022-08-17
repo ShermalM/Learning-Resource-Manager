@@ -21,7 +21,6 @@ export default {
             return this.$store.getters.storedResources;
         }
     }
-    // inject: ['resources']
 }
 </script>
 
